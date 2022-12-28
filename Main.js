@@ -2,6 +2,8 @@ let planets = []
 planetNum = 2
 aimMode = true
 targetNum=1
+var button_w
+var button_h
 
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight);
@@ -30,40 +32,41 @@ function setup() {
 
     planets[0].velocity=createVector(5, 5)
 
-    var button_w=window.innerWidth*0.05
-    var button_h=window.innerHeight*0.05
 
+    button_w=min(window.innerWidth/5,144)
+
+    button_h=min(window.innerHeight*0.10,40)
 
     plus_button = createButton('+');
-    plus_button.position((window.innerWidth ) / 2-2*button_w, window.innerHeight-button_h);
+    plus_button.position((window.innerWidth ) / 2-2.5*button_w, window.innerHeight-button_h);
     plus_button.style('color', 'white')
     plus_button.style('background', '#1a1b26')
     plus_button.size(button_w,button_h)
     plus_button.mousePressed(plus);
 
     minus_button = createButton('-');
-    minus_button.position((window.innerWidth ) / 2-button_w, window.innerHeight-button_h);
+    minus_button.position((window.innerWidth ) / 2-1.5*button_w, window.innerHeight-button_h);
     minus_button.style('color', 'white')
     minus_button.style('background', '#1a1b26')
     minus_button.size(button_w,button_h)
     minus_button.mousePressed(minus);
 
     shot_button = createButton('Пуск');
-    shot_button.position((window.innerWidth ) / 2, window.innerHeight-button_h);
+    shot_button.position((window.innerWidth ) / 2-0.5*button_w, window.innerHeight-button_h);
     shot_button.style('color', 'white')
     shot_button.style('background', '#1a1b26')
     shot_button.size(button_w,button_h)
     shot_button.mousePressed(shot);
 
     left_button = createButton('↺');
-    left_button.position((window.innerWidth ) / 2+button_w, window.innerHeight-button_h);
+    left_button.position((window.innerWidth ) / 2+0.5*button_w, window.innerHeight-button_h);
     left_button.style('color', 'white')
     left_button.style('background', '#1a1b26')
     left_button.size(button_w,button_h)
     left_button.mousePressed(left);
 
     right_button = createButton('↻');
-    right_button.position((window.innerWidth ) / 2+2*button_w, window.innerHeight-button_h);
+    right_button.position((window.innerWidth ) / 2+1.5*button_w, window.innerHeight-button_h);
     right_button.style('color', 'white')
     right_button.style('background', '#1a1b26')
     right_button.size(button_w,button_h)

@@ -103,7 +103,7 @@ class Planet{
         if (pl.position.x - pl.radius <= 0 || pl.position.x + pl.radius >= window.innerWidth){
             pl.velocity.x *= -0.7
         }
-        if (pl.position.y - pl.radius <= 0 || pl.position.y + pl.radius >= window.innerHeight)
+        if (pl.position.y - pl.radius <= 0 || pl.position.y + pl.radius >= window.innerHeight-button_h)
             pl.velocity.y *= -0.7
         
         if (pl.position.x - pl.radius <= 0)
@@ -112,8 +112,8 @@ class Planet{
             pl.position.x=window.innerWidth-pl.radius
         if (pl.position.y - pl.radius <= 0)
             pl.position.y=0+pl.radius
-        if (pl.position.y + pl.radius >= window.innerHeight)
-            pl.position.y=window.innerHeight-pl.radius
+        if (pl.position.y + pl.radius >= window.innerHeight - button_h)
+            pl.position.y=window.innerHeight-pl.radius-button_h
        // pl.position.x = constrain(pl.position.x, pl.radius + 1, window.innerWidth - pl.radius - 1)
         //pl.position.y = constrain(pl.position.y, pl.radius + 1, window.innerHeight - pl.radius - 1)
     }
