@@ -5,20 +5,20 @@ targetNum=1
 var button_w
 var button_h
 
-function setup() {
+function setup() { //функция, задающая начальные условия игры
     createCanvas(window.innerWidth, window.innerHeight);
     frameRate(60);
-    let cue = new Planet(Math.random() * window.innerWidth, 
+    let cue = new Planet(Math.random() * window.innerWidth, //создание битка
                             Math.random() * window.innerHeight,
                             300, false,0)
     planets.push(cue)
 
-    let regular = new Planet(Math.random() * window.innerWidth, 
+    let regular = new Planet(Math.random() * window.innerWidth, //создание обычного шара
                             Math.random() * window.innerHeight,
                             300, false,1)
     planets.push(regular)
 
-    for (let i = 0; i < targetNum; ++i){
+    for (let i = 0; i < targetNum; ++i){ //создание мишеней
         let pl = new Planet(Math.random() * window.innerWidth, 
         Math.random() * window.innerHeight,
         300, false,3)
@@ -37,7 +37,7 @@ function setup() {
 
     button_h=min(window.innerHeight*0.10,40)
 
-    plus_button = createButton('+');
+    plus_button = createButton('+'); //создание кнопок интерфейса
     plus_button.position((window.innerWidth ) / 2-2.5*button_w, window.innerHeight-button_h);
     plus_button.style('color', 'white')
     plus_button.style('background', '#1a1b26')
@@ -75,7 +75,7 @@ function setup() {
 }
 
 
-function draw() {
+function draw() { //функция отрисовки поля
     const dt = 1 / frameRate() * 60
     angleMode(DEGREES);
     background("#1a1b26")
@@ -121,7 +121,7 @@ function draw() {
 }
 
 
-function are_coliding() {
+function are_coliding() { //функция, проыеряющая коллизии шаров в начальный момент времени
     for (let i = 0; i < planetNum; ++i){
         for (let j = i + 1; j < planetNum; ++j){
             var r = planets[i].position.dist(planets[j].position)
@@ -136,7 +136,7 @@ function are_coliding() {
     
 }
 
-function generate() {
+function generate() { //функция повтороной генерации игрового поля
     planets=[]
     planetNum = 2
 
@@ -165,14 +165,14 @@ function generate() {
 
 
 
-function plus() {
+function plus() { //функция, увеличивающая силу удара
     if (aimMode){
         const magnitude = planets[0].velocity.mag()
         planets[0].velocity.setMag(magnitude+2)
     }
 }
 
-function minus() {
+function minus() { //функция, уменьшающая силу удара
     if (aimMode){
         const magnitude = planets[0].velocity.mag()
         if (magnitude>5)
@@ -180,7 +180,7 @@ function minus() {
     }
 }
 
-function shot() {
+function shot() { //функция удара по битку
     if (aimMode){
         aimMode=false
         for (let i = 0; i < planetNum; ++i){
@@ -189,13 +189,13 @@ function shot() {
     }
 }
 
-function left() {
+function left() { //отклонение направления удара битком против часовой стрелки
     if (aimMode){
     planets[0].velocity.rotate(-5)
     }
 }
 
-function right() {
+function right() { //отклонение направления удара битком по часовой стрелке
     if (aimMode){
     planets[0].velocity.rotate(5)
     }

@@ -1,5 +1,5 @@
 class Planet{
-    constructor(x=0, y=0, m=100,mv,type) {
+    constructor(x=0, y=0, m=100,mv,type) { //конструктор шара
         this.move = mv
         this.mass = m
         this.acceleration = createVector(0, 0)
@@ -12,7 +12,7 @@ class Planet{
         if (type==0)
             this.color = color("#FFFFFF")
         else if (type==1)
-            this.color = color("#000000")
+            this.color = color("#66CDAA")
         else{
             this.color = color("#FF0000")
             this.radius*=3
@@ -21,7 +21,7 @@ class Planet{
 
     }
 
-    update(dt){
+    update(dt){ //метод, обновляющий шар
         const zero_vector=createVector(0, 0)
         this.acceleration.mult(dt)
         this.velocity.add(this.acceleration)
@@ -35,13 +35,13 @@ class Planet{
         }
     }
 
-    applyForce(force){
+    applyForce(force){ //метод, прикладывющщий к шару силу
         let fc = force.copy()
         fc.div(this.mass)
         this.acceleration.add(fc)
     }
 
-    render(){
+    render(){ //метод отрисовки шара
         fill(this.color)
         noStroke()
         circle(this.position.x, this.position.y, this.radius * 2)
@@ -52,7 +52,7 @@ class Planet{
         line(this.position.x,this.position.y, dPos.x,dPos.y)
     }
 
-    static react(pl1, pl2){
+    static react(pl1, pl2){ //метод взаимодействи с другими шарами
         const r = pl1.position.dist(pl2.position)
         if (r < pl1.radius + pl2.radius){
             if ((pl1.type==3)&&(pl2.type==1)){
@@ -70,14 +70,14 @@ class Planet{
         
     }
 
-    static vectorProjection(a, b){
+    static vectorProjection(a, b){ //метод проекции вектора
         let bCopy = b.copy().normalize()
         const sp = a.dot(bCopy)
         bCopy.mult(sp)
         return bCopy
     }
 
-    static collide(pl1, pl2){
+    static collide(pl1, pl2){ //метод коллизии шаров друг с другом
         const tmpDir12 = createVector(pl2.position.x - pl1.position.x, pl2.position.y - pl1.position.y)
         const offset = tmpDir12.mag() - (pl1.radius + pl2.radius)
         pl1.position.add(tmpDir12.copy().normalize().mult(offset / 2))
@@ -99,7 +99,7 @@ class Planet{
         pl2.applyForce(resImpulse2)
     }
 
-    static wallCollide(pl){
+    static wallCollide(pl){ //метод коллизии шара со стеной
         if (pl.position.x - pl.radius <= 0 || pl.position.x + pl.radius >= window.innerWidth){
             pl.velocity.x *= -0.7
         }
@@ -114,7 +114,6 @@ class Planet{
             pl.position.y=0+pl.radius
         if (pl.position.y + pl.radius >= window.innerHeight - button_h)
             pl.position.y=window.innerHeight-pl.radius-button_h
-       // pl.position.x = constrain(pl.position.x, pl.radius + 1, window.innerWidth - pl.radius - 1)
-        //pl.position.y = constrain(pl.position.y, pl.radius + 1, window.innerHeight - pl.radius - 1)
+       
     }
 }
